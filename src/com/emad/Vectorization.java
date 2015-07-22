@@ -31,6 +31,9 @@ public class Vectorization
             input = new File("sample.jpg");
             File output = rgb2gray(input);
             BufferedImage inputImage = ImageIO.read(output);
+            Thresholding thresholding = new Thresholding(100);
+            thresholding.threshold(inputImage, inputImage);
+            ImageIO.write(inputImage, "jpg", new File("emad2.jpg"));
             BufferedImage outputImage = new BufferedImage(inputImage.getWidth(),
                     inputImage.getHeight(),
                     BufferedImage.TYPE_BYTE_GRAY);

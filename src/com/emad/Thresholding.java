@@ -6,11 +6,50 @@
 
 package com.emad;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author tnp
  */
 public class Thresholding
 {
-    
+
+    private int threshold = 250;
+
+    public Thresholding(int threshold)
+    {
+        this.threshold = threshold;
+    }
+
+    /**
+     * Do thresholding on source image
+     *
+     * @param srcImage
+     * @param dstImage
+     */
+    public void threshold(BufferedImage srcImage, BufferedImage dstImage)
+    {
+        int height = srcImage.getHeight();
+        int width = srcImage.getWidth();
+
+        for (int k = 0; k < height; k++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                Color color = new Color(srcImage.getRGB(j, k));
+                int GrayLevel = color.getRed();
+                if(GrayLevel > threshold)
+                {
+                    dstImage.setRGB(j, k, 0xFFFFFF);
+                }
+                else
+                {
+                    dstImage.setRGB(j, k, srcImage.getRGB(j, k));
+                }
+            }
+
+        }
+    }
 }
