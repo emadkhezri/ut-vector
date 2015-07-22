@@ -18,6 +18,10 @@ public class Thresholding
 
     private int threshold = 250;
 
+    public Thresholding()
+    {
+    }
+
     public Thresholding(int threshold)
     {
         this.threshold = threshold;
@@ -40,7 +44,7 @@ public class Thresholding
             {
                 Color color = new Color(srcImage.getRGB(j, k));
                 int GrayLevel = color.getRed();
-                if(GrayLevel > threshold)
+                if (GrayLevel > threshold)
                 {
                     dstImage.setRGB(j, k, 0xFFFFFF);
                 }
@@ -52,4 +56,29 @@ public class Thresholding
 
         }
     }
+
+    public void binarize(BufferedImage srcImage, BufferedImage dstImage)
+    {
+        int height = srcImage.getHeight();
+        int width = srcImage.getWidth();
+
+        for (int k = 0; k < height; k++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                Color color = new Color(srcImage.getRGB(j, k));
+                int GrayLevel = color.getRed();
+                if (GrayLevel > threshold)
+                {
+                    dstImage.setRGB(j, k, 0xFFFFFF);
+                }
+                else
+                {
+                    dstImage.setRGB(j, k, 0);
+                }
+            }
+
+        }
+    }
+
 }

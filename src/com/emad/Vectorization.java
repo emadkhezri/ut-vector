@@ -33,13 +33,15 @@ public class Vectorization
             BufferedImage inputImage = ImageIO.read(output);
             Thresholding thresholding = new Thresholding(100);
             thresholding.threshold(inputImage, inputImage);
-            ImageIO.write(inputImage, "jpg", new File("emad2.jpg"));
+            ImageIO.write(inputImage, "jpg", new File("thresholded-sample.jpg"));
             BufferedImage outputImage = new BufferedImage(inputImage.getWidth(),
                     inputImage.getHeight(),
                     BufferedImage.TYPE_BYTE_GRAY);
             MedianFilter medianFilter = new MedianFilter(3);
             medianFilter.filter(inputImage, outputImage);
-            ImageIO.write(outputImage, "jpg", new File("emad.jpg"));
+            ImageIO.write(outputImage, "jpg", new File("medianFilter-sample.jpg"));
+            thresholding.binarize(outputImage, outputImage);
+            ImageIO.write(outputImage, "jpg", new File("binary-sample.jpg"));
         }
         catch (Exception e)
         {
