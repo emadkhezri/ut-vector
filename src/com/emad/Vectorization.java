@@ -7,11 +7,9 @@
 package com.emad;
 
 import ij.process.ByteProcessor;
-import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
 import java.io.File;
-import java.io.IOException;
+import java.util.LinkedHashMap;
 import javax.imageio.ImageIO;
 
 /**
@@ -46,6 +44,8 @@ public class Vectorization
             ImageIO.write(outputImage, "jpg", new File("binary-sample.jpg"));
             new ByteProcessor(outputImage).skeletonize();
             ImageIO.write(outputImage, "jpg", new File("skeleton-sample.jpg"));
+            LinkedHashMap map = new PixelUtility(outputImage).getAmbiguityRegion();
+            System.out.println("h");
         }
         catch (Exception e)
         {
