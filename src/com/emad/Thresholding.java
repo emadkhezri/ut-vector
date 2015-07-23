@@ -27,6 +27,16 @@ public class Thresholding
         this.threshold = threshold;
     }
 
+    public void setThreshold(int threshold)
+    {
+        this.threshold = threshold;
+    }
+
+    public int getThreshold()
+    {
+        return threshold;
+    }
+
     /**
      * Do thresholding on source image
      *

@@ -6,6 +6,7 @@
 
 package com.emad;
 
+import ij.process.ByteProcessor;
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
@@ -29,9 +30,9 @@ public class Vectorization
         try
         {
             input = new File("sample.jpg");
-            File output = rgb2gray(input);
+            File output = GrayScale.rgbToGray2(input);
             BufferedImage inputImage = ImageIO.read(output);
-            Thresholding thresholding = new Thresholding(100);
+            Thresholding thresholding = new Thresholding(120);
             thresholding.threshold(inputImage, inputImage);
             ImageIO.write(inputImage, "jpg", new File("thresholded-sample.jpg"));
             BufferedImage outputImage = new BufferedImage(inputImage.getWidth(),
@@ -39,29 +40,17 @@ public class Vectorization
                     BufferedImage.TYPE_BYTE_GRAY);
             MedianFilter medianFilter = new MedianFilter(3);
             medianFilter.filter(inputImage, outputImage);
-            ImageIO.write(outputImage, "jpg", new File("medianFilter-sample.jpg"));
+            ImageIO.write(outputImage, "jpg",
+                    new File("medianFilter-sample.jpg"));
             thresholding.binarize(outputImage, outputImage);
             ImageIO.write(outputImage, "jpg", new File("binary-sample.jpg"));
+            new ByteProcessor(outputImage).skeletonize();
+            ImageIO.write(outputImage, "jpg", new File("skeleton-sample.jpg"));
         }
         catch (Exception e)
         {
 
         }
-    }
-
-    public static File rgb2gray(File input) throws IOException
-    {
-        BufferedImage image = ImageIO.read(input);
-        if (!image.getColorModel().getColorSpace().isCS_sRGB())
-        {
-            return input;
-        }
-        ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
-        ColorConvertOp op = new ColorConvertOp(cs, null);
-        image = op.filter(image, null);
-        File outputFile = new File("output-" + input.getName());
-        ImageIO.write(image, "jpg", outputFile);
-        return outputFile;
     }
 
 }
