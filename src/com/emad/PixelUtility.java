@@ -7,10 +7,10 @@
 package com.emad;
 
 import ij.process.ByteProcessor;
-import ij.process.ImageProcessor;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 /**
@@ -21,15 +21,19 @@ public class PixelUtility
 {
 
     private final BufferedImage image;
+    private boolean isAmbiguity[][];
+    private LinkedHashMap ambiguityRegionMap = new LinkedHashMap();
 
     public PixelUtility(BufferedImage inputImage)
     {
         this.image = inputImage;
+        isAmbiguity = new boolean[inputImage.getWidth()][inputImage.getHeight()];
+        for(boolean[] row:isAmbiguity)
+        Arrays.fill(row, false);
     }
 
-    public LinkedHashMap getAmbiguityRegion()
+    public void processAmbiguityPoints()
     {
-        LinkedHashMap ambiguityRegionMap = new LinkedHashMap();
         int degree;
         for (int j = 0; j < image.getHeight(); j++)
         {
@@ -40,38 +44,34 @@ public class PixelUtility
                     continue;
                 }
                 double neighbours[][] = new double[3][3];
-                degree = getBlackNeighboursCount(neighbours, i, j);
+                new ByteProcessor(image).getNeighborhood(i, j, neighbours);
+                degree = getBlackNeighboursCount(neighbours);
                 if (degree >= 3)
                 {
-                    for (int k = 0; k < 3; k++)
+                    int dense = getBlackNeighbourDense(neighbours);
+                    if (dense == 0)
                     {
-                        for (int l = 0; l < 3; l++)
-                        {
-                            if (i == k && i == 1)
-                                ;//
-                            else
-
-                            {
-                                
-                            }
-                        }
+                        ambiguityRegionMap.put(new Point(i, j), degree);
+                        isAmbiguity[i][j] = true;
                     }
-                    ambiguityRegionMap.put(new Point(i, j), degree);
                 }
             }
         }
+    }
+
+    public LinkedHashMap getAmbiguityMap()
+    {
         return ambiguityRegionMap;
     }
 
-    public int getBlackNeighboursCount(double neigbours[][], int x, int y)
+    private int getBlackNeighboursCount(double neigbours[][])
     {
-        new ByteProcessor(image).getNeighborhood(x, y, neigbours);
         int count = 0;
         for (int i = 0; i < neigbours.length; i++)
         {
             for (int j = 0; j < neigbours.length; j++)
             {
-                if (i == j & i == neigbours.length / 2)
+                if (i == j && i == neigbours.length / 2)
                 {
                     continue;
                 }
@@ -83,6 +83,54 @@ public class PixelUtility
         }
         return count;
 
+    }
+
+    private int getBlackNeighbourDense(double neighbours[][])
+    {
+        int dense = 0;
+        double[] neighbourArray =
+        {
+            neighbours[0][0], neighbours[0][1], neighbours[0][2],
+            neighbours[1][2], neighbours[2][2], neighbours[2][1],
+            neighbours[2][0], neighbours[1][0]
+        };
+        for (int i = 0; i < 7; i++)
+        {
+            if (neighbourArray[i] == neighbourArray[i + 1] && neighbourArray[i]
+                    == 0)
+            {
+                dense++;
+                i++;
+            }
+        }
+        return dense;
+    }
+
+    public ArrayList<Point> getBlackNeigboursPosition(Point point)
+    {
+        ArrayList<Point> neighbourList= new ArrayList<>();
+        double neighbours[][] = new double[3][3];
+        new ByteProcessor(image).getNeighborhood(point.x, point.y, neighbours);
+        for(int i=0;i<neighbours.length;i++)
+            for(int j=0;j<neighbours.length;j++)
+            {
+                if (i == j && i == neighbours.length / 2)
+                {
+                    continue;
+                }
+                if(neighbours[i][j]==0)
+                {
+                    int x= point.x;
+                    int y=point.y;
+                    neighbourList.add(new Point(x+i-1, y+j-1));
+                }
+            }
+        return neighbourList;
+    }
+
+    public boolean isAmbiguity(Point p)
+    {
+        return isAmbiguity[p.x][p.y];
     }
 
 }
