@@ -36,7 +36,7 @@ public class PathSegmentation
         this.pixelUtil = pixelUtil;
     }
 
-    public void segmentation(Point point, String label)
+    public boolean segmentation(Point point, String label)
     {
         ArrayList<Point> segmentArray = new ArrayList<>();
         if (check[point.x][point.y] != true)
@@ -56,14 +56,16 @@ public class PathSegmentation
                  for (Point p : pixelUtil.getBlackNeigboursPosition(point))
                 {
                     if(pixelUtil.isAmbiguity(p))
-                        return;
+                        return false;
                 }
                 for(Point p : pixelUtil.getBlackNeigboursPosition(point))
                 {
                     segmentation(p, label);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     public LinkedHashMap<String, ArrayList<Point>> getSegmentMap()

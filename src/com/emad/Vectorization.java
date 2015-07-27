@@ -6,12 +6,16 @@
 
 package com.emad;
 
+import com.goebl.simplify.Simplify;
 import ij.process.ByteProcessor;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -24,7 +28,6 @@ public class Vectorization
 {
 
     /**
-     * @param args the command line arguments
      */
     public Vectorization()
     {
@@ -40,18 +43,39 @@ public class Vectorization
             PixelUtility pixelUtil = new PixelUtility(outputImage);
             pixelUtil.processAmbiguityPoints();
             LinkedHashMap map = pixelUtil.getAmbiguityMap();
-            PathSegmentation pathSegmentation = new PathSegmentation(outputImage, pixelUtil);
-            int segmentNo=0;
-            for(int j=0;j<outputImage.getHeight();j++)
-                for(int i=0;i<outputImage.getWidth();i++)
+            PathSegmentation pathSegmentation
+                    = new PathSegmentation(outputImage, pixelUtil);
+            int segmentNo = 0;
+            for (int j = 0; j < outputImage.getHeight(); j++)
+            {
+                for (int i = 0; i < outputImage.getWidth(); i++)
                 {
-                    if(new ByteProcessor(outputImage).get(i, j)==0)
+                    if (new ByteProcessor(outputImage).get(i, j) == 0)
                     {
-                        pathSegmentation.segmentation(new Point(i, j), "Segment"+segmentNo);
-                        segmentNo++;
+                        if (pathSegmentation.segmentation(new Point(i, j),
+                                "Segment" + segmentNo))
+                        {
+                            segmentNo++;
+                        }
                     }
                 }
+            }
             LinkedHashMap pathMap = pathSegmentation.getSegmentMap();
+            SVGGenerator svg = new SVGGenerator(outputImage.getWidth(),
+                    outputImage.getHeight());
+            Simplify<Point> simplify = new Simplify<Point>(new Point[0]);
+            // here we have an array with hundreds of points
+            double tolerance = 0.7;
+            boolean highQuality = true; // Douglas-Peucker, false for Radial-Distance
+            for (String label : (Set<String>)pathMap.keySet())
+            {
+                Point[] allPoints = new Point[((ArrayList<Point>)pathMap.get(label)).size()];
+                allPoints = ((ArrayList<Point>)pathMap.get(label)).toArray(allPoints);
+                Point[] lessPoints = simplify.simplify(allPoints, tolerance, highQuality);
+                svg.addPolyLine(label, new ArrayList<>(Arrays.asList(lessPoints)));
+            }
+
+            svg.saveToFile("second.svg");
             System.out.println("End");
         }
         catch (Exception e)
@@ -82,7 +106,7 @@ public class Vectorization
             ImageIO.write(outputImage, "bmp", new File("binary-sample.bmp"));
             new ByteProcessor(outputImage).skeletonize();
             ImageIO.write(outputImage, "bmp", new File("skeleton-sample.bmp"));
-        return outputImage;
+            return outputImage;
         }
         catch (IOException ex)
         {
