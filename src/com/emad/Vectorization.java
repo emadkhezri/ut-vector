@@ -38,19 +38,26 @@ public class Vectorization
         try
         {
             Vectorization v = new Vectorization();
-            BufferedImage outputImage = v.preProcessing();
+            BufferedImage image1 = v.preProcessing("sample2.bmp");
+            BufferedImage image2 = v.preProcessing("sample3.bmp");
 
-            PixelUtility pixelUtil = new PixelUtility(outputImage);
-            pixelUtil.processAmbiguityPoints();
-            LinkedHashMap map = pixelUtil.getAmbiguityMap();
-            PathSegmentation pathSegmentation
-                    = new PathSegmentation(outputImage, pixelUtil);
+            PixelUtility pixelUtil1 = new PixelUtility(image1);
+            pixelUtil1.processAmbiguityPoints();
+
+            PixelUtility pixelUtil2 = new PixelUtility(image2);
+            pixelUtil2.processAmbiguityPoints();
+
+            LinkedHashMap map1 = pixelUtil1.getAmbiguityMap();
+            LinkedHashMap map2 = pixelUtil2.getAmbiguityMap();
+            SmartJunctionRecover smartJunc = new SmartJunctionRecover();
+            smartJunc.train(image1, pixelUtil1);
+            PathSegmentation pathSegmentation = new PathSegmentation(image2, pixelUtil2, smartJunc);
             int segmentNo = 0;
-            for (int j = 0; j < outputImage.getHeight(); j++)
+            for (int j = 0; j < image2.getHeight(); j++)
             {
-                for (int i = 0; i < outputImage.getWidth(); i++)
+                for (int i = 0; i < image2.getWidth(); i++)
                 {
-                    if (new ByteProcessor(outputImage).get(i, j) == 0)
+                    if (new ByteProcessor(image2).get(i, j) == 0)
                     {
                         if (pathSegmentation.segmentation(new Point(i, j),
                                 "Segment" + segmentNo))
@@ -61,11 +68,11 @@ public class Vectorization
                 }
             }
             LinkedHashMap pathMap = pathSegmentation.getSegmentMap();
-            SVGGenerator svg = new SVGGenerator(outputImage.getWidth(),
-                    outputImage.getHeight());
-            Simplify<Point> simplify = new Simplify<Point>(new Point[0]);
+            SVGGenerator svg = new SVGGenerator(image2.getWidth(),
+                    image2.getHeight());
+            Simplify<Point> simplify = new Simplify<>(new Point[0]);
             // here we have an array with hundreds of points
-            double tolerance = 0.7;
+            double tolerance = 0.3;
             boolean highQuality = true; // Douglas-Peucker, false for Radial-Distance
             for (String label : (Set<String>)pathMap.keySet())
             {
@@ -84,28 +91,26 @@ public class Vectorization
         }
     }
 
-    private BufferedImage preProcessing()
+    private BufferedImage preProcessing(String fileName)
     {
         try
         {
             File input = null;
-            input = new File("sample.jpg");
+            input = new File(fileName);
             File output = GrayScale.rgbToGray2(input);
             BufferedImage inputImage = ImageIO.read(output);
             Thresholding thresholding = new Thresholding(120);
             thresholding.threshold(inputImage, inputImage);
-            ImageIO.write(inputImage, "bmp", new File("thresholded-sample.bmp"));
-            BufferedImage outputImage = new BufferedImage(inputImage.getWidth(),
-                    inputImage.getHeight(),
-                    BufferedImage.TYPE_BYTE_GRAY);
+            ImageIO.write(inputImage, "bmp", new File("thresholded-" + fileName));
+            BufferedImage outputImage = new BufferedImage(inputImage.getWidth(), inputImage.
+                    getHeight(), BufferedImage.TYPE_BYTE_GRAY);
             MedianFilter medianFilter = new MedianFilter(3);
             medianFilter.filter(inputImage, outputImage);
-            ImageIO.write(outputImage, "bmp",
-                    new File("medianFilter-sample.bmp"));
+            ImageIO.write(outputImage, "bmp", new File("medianFilter" + fileName));
             thresholding.binarize(outputImage, outputImage);
-            ImageIO.write(outputImage, "bmp", new File("binary-sample.bmp"));
+            ImageIO.write(outputImage, "bmp", new File("binary-" + fileName));
             new ByteProcessor(outputImage).skeletonize();
-            ImageIO.write(outputImage, "bmp", new File("skeleton-sample.bmp"));
+            ImageIO.write(outputImage, "bmp", new File("skeleton-" + fileName));
             return outputImage;
         }
         catch (IOException ex)

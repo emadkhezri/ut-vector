@@ -51,7 +51,8 @@ public class PixelUtility
                     int dense = getBlackNeighbourDense(neighbours);
                     if (dense == 0)
                     {
-                        ambiguityRegionMap.put(new Point(i, j), degree);
+                        Point p = new Point(i, j);
+                        ambiguityRegionMap.put(p, degree);
                         isAmbiguity[i][j] = true;
                     }
                 }
@@ -103,6 +104,9 @@ public class PixelUtility
                 i++;
             }
         }
+        //check first and last element of array
+        if(neighbourArray[0]==neighbourArray[7]&&neighbourArray[7]==0)
+            dense++;
         return dense;
     }
 

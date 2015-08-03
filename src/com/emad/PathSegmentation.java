@@ -22,12 +22,17 @@ public class PathSegmentation
 
     private final ByteProcessor image;
     LinkedHashMap<String, ArrayList<Point>> segmentMap = new LinkedHashMap<>();
-    private final boolean check[][];
-    private final PixelUtility pixelUtil;
+    private boolean check[][];
+    private PixelUtility pixelUtil;
+    private SmartJunctionRecover smartJunc;
+    int counter = 0;
 
-    public PathSegmentation(BufferedImage image, PixelUtility pixelUtil)
+//    private MyNeuralNetwork myNeuralNetwork;
+    public PathSegmentation(BufferedImage image, PixelUtility pixelUtil,
+            SmartJunctionRecover smartJunc)
     {
         this.image = new ByteProcessor(image);
+        this.smartJunc = smartJunc;
         check = new boolean[image.getWidth()][image.getHeight()];
         for (boolean[] row : check)
         {
@@ -46,21 +51,37 @@ public class PathSegmentation
                 segmentArray = segmentMap.get(label);
                 if (segmentArray == null)
                 {
-                    segmentArray=new ArrayList<>();
+                    segmentArray = new ArrayList<>();
                     segmentMap.put(label, segmentArray);
                 }
 
                 segmentArray.add(point);
                 check[point.x][point.y] = true;
 
-                 for (Point p : pixelUtil.getBlackNeigboursPosition(point))
+                for (Point p : pixelUtil.getBlackNeigboursPosition(point))
                 {
-                    if(pixelUtil.isAmbiguity(p))
+                    if (pixelUtil.isAmbiguity(p))
+                    {
                         return false;
+                    }
                 }
-                for(Point p : pixelUtil.getBlackNeigboursPosition(point))
+                for (Point p : pixelUtil.getBlackNeigboursPosition(point))
                 {
                     segmentation(p, label);
+                }
+            }
+            else
+            {
+                ArrayList neighbourPoints = pixelUtil.getBlackNeigboursPosition(
+                        point);
+                if (neighbourPoints.size() == 3)
+                {
+                    Junction junc = new Junction(point, 3, pixelUtil);
+                    int configType = smartJunc.getJunctionType(junc);
+                    counter++;
+                    System.out.println(counter + "- Config Type for x= " + point.x
+                            + " Config Type for y= "
+                            + point.y + " = " + configType);
                 }
             }
             return true;
