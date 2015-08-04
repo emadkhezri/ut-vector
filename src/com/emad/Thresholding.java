@@ -6,6 +6,7 @@
 
 package com.emad;
 
+import static com.emad.Constants.GRAY_SCALE_THRESHOLD;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
@@ -16,7 +17,7 @@ import java.awt.image.BufferedImage;
 public class Thresholding
 {
 
-    private int threshold = 250;
+    private int threshold = GRAY_SCALE_THRESHOLD;
 
     public Thresholding()
     {

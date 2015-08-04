@@ -6,6 +6,8 @@
 
 package com.emad;
 
+import static com.emad.Constants.KNN_NUMBER;
+import com.emad.GeneralTypes.ClassifierType;
 import ij.process.ByteProcessor;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,33 +30,49 @@ import net.sf.javaml.tools.data.FileHandler;
  */
 public class SmartJunctionRecover
 {
-    private Classifier knn;
 
-    public SmartJunctionRecover()
+    private Classifier classifier;
+    Dataset dataSet;
+
+    public SmartJunctionRecover(ClassifierType type)
     {
-        knn = new KNearestNeighbors(5);
+        if (type == ClassifierType.KNN)
+        {
+            classifier = new KNearestNeighbors(KNN_NUMBER);
+        }
+        else if (type == ClassifierType.SVM)
+        {
+            classifier = new LibSVM();
+        }
+        dataSet = new DefaultDataset();
     }
-    
-    public SmartJunctionRecover(String dataSetFileName)
+
+    public SmartJunctionRecover(ClassifierType type, String dataSetFileName)
     {
-        Dataset dataSet=null;
+        if (type == ClassifierType.KNN)
+        {
+            classifier = new KNearestNeighbors(KNN_NUMBER);
+        }
+        else if (type == ClassifierType.SVM)
+        {
+            classifier = new LibSVM();
+        }
         try
         {
-            dataSet = FileHandler.loadDataset(new File(dataSetFileName),4,"\t");
+            dataSet = FileHandler.loadDataset(new File(dataSetFileName),0,",");
         }
         catch (IOException ex)
         {
             Logger.getLogger(SmartJunctionRecover.class.getName()).log(Level.SEVERE, null, ex);
         }
-        knn = new LibSVM();
-        knn.buildClassifier(dataSet);
+//        Instance myInstances[] = (Instance[])dataSet.toArray();
+        classifier.buildClassifier(dataSet);
     }
 
     public void train(BufferedImage buffImage, PixelUtility pixelUtil)
     {
         ByteProcessor image = new ByteProcessor(buffImage);
         Scanner in = new Scanner(System.in);
-        Dataset data = new DefaultDataset();
         for (int j = 0; j < image.getHeight(); j++)
         {
             for (int i = 0; i < image.getWidth(); i++)
@@ -67,25 +85,30 @@ public class SmartJunctionRecover
                     Junction junc = new Junction(new java.awt.Point(i, j), 3, pixelUtil);
 
                     Instance instance = new DenseInstance(junc.getFeatureArray(), configType);
-                    data.add(instance);
+                    dataSet.add(instance);
                 }
             }
         }
+        classifier.buildClassifier(dataSet);
+    }
+
+    public void saveDataSet(String datasetName)
+    {
         try
         {
-            FileHandler.exportDataset(data, new File("trained.data"));
+            FileHandler.exportDataset(dataSet, new File(datasetName), false, ",");
         }
         catch (IOException ex)
         {
-            Logger.getLogger(SmartJunctionRecover.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SmartJunctionRecover.class.getName()).log(Level.SEVERE,
+                    "Can not create file dataset.", ex);
         }
-        knn.buildClassifier(data);
     }
 
     public int getJunctionType(Junction junc)
     {
-        Object configType = knn.classify(new DenseInstance(junc.getFeatureArray()));
-        return ((Integer)configType);
+        Object configType = classifier.classify(new DenseInstance(junc.getFeatureArray()));
+        return (Integer.valueOf(configType.toString()));
     }
 
 }

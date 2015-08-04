@@ -6,13 +6,19 @@
 
 package com.emad;
 
+import static com.emad.Constants.MEDIAN_FILTER_FRAME_SIZE;
 import java.awt.image.*;
 
 public class MedianFilter
 {
 
-    private final int size; //size of the square filter
+    private int size=MEDIAN_FILTER_FRAME_SIZE; //size of the square filter
 
+    public MedianFilter()
+    {
+    }
+
+    
     public MedianFilter(int s)
     {
         if ((s % 2 == 0) || (s < 3))

@@ -6,9 +6,9 @@
 
 package com.emad;
 
+import static com.emad.Constants.JUNCTION_RECOVERY_STEP;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -19,31 +19,11 @@ public class Junction
 
     private Point coordinate;
     private int degree;
-    private final int step = 4;
+    private final int step = JUNCTION_RECOVERY_STEP;
     private ArrayList<Point> innerPoints;
     private ArrayList<Point> outerPoints;
     private final PixelUtility pixelUtil;
     private boolean[][] checkMatrix = new boolean[step * 4 + 1][step * 4 + 1];
-
-    public ArrayList<Point> getInnerPoints()
-    {
-        return innerPoints;
-    }
-
-    public ArrayList<Point> getOuterPoints()
-    {
-        return outerPoints;
-    }
-
-    public int getDegree()
-    {
-        return degree;
-    }
-
-    public int getStep()
-    {
-        return step;
-    }
     
     public double[] getFeatureArray()
     {
@@ -76,9 +56,6 @@ public class Junction
 
     private void create()
     {
-        ArrayList<Point> points;
-        points = new ArrayList<>(3);
-
         check(coordinate);
         Point p0 = coordinate;
         Point p1 = coordinate;

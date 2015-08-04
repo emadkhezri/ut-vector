@@ -1,5 +1,6 @@
 package com.goebl.simplify;
 
+import com.emad.GeneralTypes.SimplifyAlgorithm;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
@@ -28,12 +29,13 @@ abstract class AbstractSimplify<T> {
      */
     public T[] simplify(T[] points,
                         double tolerance,
-                        boolean highestQuality) {
+                        SimplifyAlgorithm simplifyAlgorithm) {
 
         double sqTolerance = tolerance * tolerance;
 
-        if (!highestQuality) {
+        if (!simplifyAlgorithm.equals(SimplifyAlgorithm.Radial_Distance)) {
             points = simplifyRadialDistance(points, sqTolerance);
+            return points;
         }
 
         points = simplifyDouglasPeucker(points, sqTolerance);

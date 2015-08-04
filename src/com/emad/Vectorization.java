@@ -6,6 +6,10 @@
 
 package com.emad;
 
+import static com.emad.Constants.DATASET_FILE_NAME;
+import static com.emad.Constants.SIMPLIFY_TOLERANCE;
+import static com.emad.GeneralTypes.ClassifierType.KNN;
+import static com.emad.GeneralTypes.SimplifyAlgorithm.Douglas_Peucker;
 import com.goebl.simplify.Simplify;
 import ij.process.ByteProcessor;
 import java.awt.Point;
@@ -49,8 +53,10 @@ public class Vectorization
 
             LinkedHashMap map1 = pixelUtil1.getAmbiguityMap();
             LinkedHashMap map2 = pixelUtil2.getAmbiguityMap();
-            SmartJunctionRecover smartJunc = new SmartJunctionRecover();
+            SmartJunctionRecover smartJunc = new SmartJunctionRecover(KNN);
             smartJunc.train(image1, pixelUtil1);
+            smartJunc.saveDataSet(DATASET_FILE_NAME);
+            smartJunc = new SmartJunctionRecover(KNN, DATASET_FILE_NAME);
             PathSegmentation pathSegmentation = new PathSegmentation(image2, pixelUtil2, smartJunc);
             int segmentNo = 0;
             for (int j = 0; j < image2.getHeight(); j++)
@@ -72,13 +78,11 @@ public class Vectorization
                     image2.getHeight());
             Simplify<Point> simplify = new Simplify<>(new Point[0]);
             // here we have an array with hundreds of points
-            double tolerance = 0.3;
-            boolean highQuality = true; // Douglas-Peucker, false for Radial-Distance
             for (String label : (Set<String>)pathMap.keySet())
             {
                 Point[] allPoints = new Point[((ArrayList<Point>)pathMap.get(label)).size()];
                 allPoints = ((ArrayList<Point>)pathMap.get(label)).toArray(allPoints);
-                Point[] lessPoints = simplify.simplify(allPoints, tolerance, highQuality);
+                Point[] lessPoints = simplify.simplify(allPoints, SIMPLIFY_TOLERANCE, Douglas_Peucker);
                 svg.addPolyLine(label, new ArrayList<>(Arrays.asList(lessPoints)));
             }
 
@@ -87,7 +91,7 @@ public class Vectorization
         }
         catch (Exception e)
         {
-
+            System.out.println(e.toString());
         }
     }
 

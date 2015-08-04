@@ -3,11 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/Trainer.java</file>
-            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/test.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/Constants.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/BezierFit.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/GrayScale.java</file>
             <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/Vectorization.java</file>
-            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/MyNeuralNetwork.java</file>
             <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/PixelUtility.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/Thresholding.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/Junction.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/SmartJunctionRecover.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/GeneralTypes.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/goebl/simplify/Simplify.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/BezierSpline.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/SVGGenerator.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/goebl/simplify/AbstractSimplify.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/Point.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/MedianFilter.java</file>
             <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/PathSegmentation.java</file>
         </group>
     </open-files>
