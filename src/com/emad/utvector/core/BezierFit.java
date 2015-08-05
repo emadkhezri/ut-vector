@@ -1,5 +1,5 @@
 
-package com.emad;
+package com.emad.utvector.core;
 
 /**
                     GNU GENERAL PUBLIC LICENSE

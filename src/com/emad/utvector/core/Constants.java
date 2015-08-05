@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package com.emad;
+package com.emad.utvector.core;
 
-import com.emad.GeneralTypes.ClassifierType;
-import static com.emad.GeneralTypes.ClassifierType.SVM;
-import com.emad.GeneralTypes.SimplifyAlgorithm;
-import static com.emad.GeneralTypes.SimplifyAlgorithm.Douglas_Peucker;
+import com.emad.utvector.core.GeneralTypes.ClassifierType;
+import static com.emad.utvector.core.GeneralTypes.ClassifierType.SVM;
+import com.emad.utvector.core.GeneralTypes.SimplifyAlgorithm;
+import static com.emad.utvector.core.GeneralTypes.SimplifyAlgorithm.Douglas_Peucker;
 
 /**
  *
@@ -39,6 +39,10 @@ public class Constants
         {
         case "INPUT_FILE_NAME":
             INPUT_FILE_NAME = value;
+            break;
+            
+        case "OUTPUT_FILE_NAME":
+            OUTPUT_FILE_NAME = value;
             break;
 
         case "NEED_MEDIAN_FILTER":

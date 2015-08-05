@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.emad;
+package com.emad.utvector.core;
 
 /**
  *

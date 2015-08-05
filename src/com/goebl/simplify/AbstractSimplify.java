@@ -1,6 +1,6 @@
 package com.goebl.simplify;
 
-import com.emad.GeneralTypes.SimplifyAlgorithm;
+import com.emad.utvector.core.GeneralTypes.SimplifyAlgorithm;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;

@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-package com.emad;
+package com.emad.utvector.core;
 
-import static com.emad.Constants.DATASET_FILE_NAME;
-import static com.emad.Constants.INPUT_FILE_NAME;
-import static com.emad.Constants.OUTPUT_FILE_NAME;
-import static com.emad.Constants.SEGMENT_PATH_CLASS;
-import static com.emad.Constants.SIMPLIFY_TOLERANCE;
-import static com.emad.GeneralTypes.ClassifierType.SVM;
-import static com.emad.GeneralTypes.SimplifyAlgorithm.Douglas_Peucker;
+import static com.emad.utvector.core.Constants.DATASET_FILE_NAME;
+import static com.emad.utvector.core.Constants.INPUT_FILE_NAME;
+import static com.emad.utvector.core.Constants.OUTPUT_FILE_NAME;
+import static com.emad.utvector.core.Constants.SEGMENT_PATH_CLASS;
+import static com.emad.utvector.core.Constants.SIMPLIFY_TOLERANCE;
+import static com.emad.utvector.core.GeneralTypes.ClassifierType.SVM;
+import static com.emad.utvector.core.GeneralTypes.SimplifyAlgorithm.Douglas_Peucker;
 import com.goebl.simplify.Simplify;
 import ij.process.ByteProcessor;
 import java.awt.Point;

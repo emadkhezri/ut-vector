@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package com.emad;
+package com.emad.utvector.core;
 
-import static com.emad.Constants.KNN_NUMBER;
-import com.emad.GeneralTypes.ClassifierType;
+import static com.emad.utvector.core.Constants.KNN_NUMBER;
+import com.emad.utvector.core.GeneralTypes.ClassifierType;
 import ij.process.ByteProcessor;
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.emad;
+package com.emad.utvector.core;
 
-import static com.emad.Constants.JUNCTION_RECOVERY_STEP;
+import static com.emad.utvector.core.Constants.JUNCTION_RECOVERY_STEP;
 import java.awt.Point;
 import java.util.ArrayList;
 

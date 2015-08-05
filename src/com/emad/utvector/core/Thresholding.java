@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.emad;
+package com.emad.utvector.core;
 
-import static com.emad.Constants.GRAY_SCALE_THRESHOLD;
+import static com.emad.utvector.core.Constants.GRAY_SCALE_THRESHOLD;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 

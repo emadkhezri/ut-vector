@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.emad;
+package com.emad.utvector.core;
 
-import static com.emad.Constants.MEDIAN_FILTER_FRAME_SIZE;
+import static com.emad.utvector.core.Constants.MEDIAN_FILTER_FRAME_SIZE;
 import java.awt.image.*;
 
 public class MedianFilter
