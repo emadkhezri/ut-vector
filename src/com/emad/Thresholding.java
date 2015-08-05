@@ -41,55 +41,57 @@ public class Thresholding
     /**
      * Do thresholding on source image
      *
-     * @param srcImage
+     * @param inputImage
      * @param dstImage
      */
-    public void threshold(BufferedImage srcImage, BufferedImage dstImage)
+    public BufferedImage threshold(BufferedImage inputImage)
     {
-        int height = srcImage.getHeight();
-        int width = srcImage.getWidth();
-
+        int height = inputImage.getHeight();
+        int width = inputImage.getWidth();
+        BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
         for (int k = 0; k < height; k++)
         {
             for (int j = 0; j < width; j++)
             {
-                Color color = new Color(srcImage.getRGB(j, k));
+                Color color = new Color(inputImage.getRGB(j, k));
                 int GrayLevel = color.getRed();
                 if (GrayLevel > threshold)
                 {
-                    dstImage.setRGB(j, k, 0xFFFFFF);
+                    outputImage.setRGB(j, k, 0xFFFFFF);
                 }
                 else
                 {
-                    dstImage.setRGB(j, k, srcImage.getRGB(j, k));
+                    outputImage.setRGB(j, k, inputImage.getRGB(j, k));
                 }
             }
 
         }
+        return outputImage;
     }
 
-    public void binarize(BufferedImage srcImage, BufferedImage dstImage)
+    public BufferedImage binarize(BufferedImage inputImage)
     {
-        int height = srcImage.getHeight();
-        int width = srcImage.getWidth();
-
+        int height = inputImage.getHeight();
+        int width = inputImage.getWidth();
+        BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
         for (int k = 0; k < height; k++)
         {
             for (int j = 0; j < width; j++)
             {
-                Color color = new Color(srcImage.getRGB(j, k));
+                Color color = new Color(inputImage.getRGB(j, k));
                 int GrayLevel = color.getRed();
                 if (GrayLevel > threshold)
                 {
-                    dstImage.setRGB(j, k, 0xFFFFFF);
+                    outputImage.setRGB(j, k, 0xFFFFFF);
                 }
                 else
                 {
-                    dstImage.setRGB(j, k, 0);
+                    outputImage.setRGB(j, k, 0);
                 }
             }
 
         }
+        return outputImage;
     }
 
 }

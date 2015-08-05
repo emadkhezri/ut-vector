@@ -33,9 +33,8 @@ abstract class AbstractSimplify<T> {
 
         double sqTolerance = tolerance * tolerance;
 
-        if (!simplifyAlgorithm.equals(SimplifyAlgorithm.Radial_Distance)) {
+        if (simplifyAlgorithm.equals(SimplifyAlgorithm.Radial_Distance)) {
             points = simplifyRadialDistance(points, sqTolerance);
-            return points;
         }
 
         points = simplifyDouglasPeucker(points, sqTolerance);

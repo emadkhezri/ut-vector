@@ -36,34 +36,29 @@ public class GrayScale
         return outputFile;
     }
 
-    public static File rgbToGray2(File input) throws IOException
+    public BufferedImage rgbToGray2(BufferedImage inputImage) throws IOException
     {
-        BufferedImage image;
         int width;
         int height;
-        image = ImageIO.read(input);
-        width = image.getWidth();
-        height = image.getHeight();
-
+        width = inputImage.getWidth();
+        height = inputImage.getHeight();
+        BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
         for (int i = 0; i < height; i++)
         {
 
             for (int j = 0; j < width; j++)
             {
-                Color c = new Color(image.getRGB(j, i));
+                Color c = new Color(inputImage.getRGB(j, i));
                 int red = (int)(c.getRed() * 0.299);
                 int green = (int)(c.getGreen() * 0.587);
                 int blue = (int)(c.getBlue() * 0.114);
                 Color newColor = new Color(red + green + blue,
                         red + green + blue, red + green + blue);
 
-                image.setRGB(j, i, newColor.getRGB());
+                outputImage.setRGB(j, i, newColor.getRGB());
             }
         }
-
-        File output = new File("grayScale-" + input.getName());
-        ImageIO.write(image, "jpg", output);
-        return output;
+        return outputImage;
 
     }
 

@@ -6,6 +6,14 @@
 
 package com.emad;
 
+import ij.process.ByteProcessor;
+import ij.process.ImageProcessor;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
@@ -16,10 +24,20 @@ import javax.xml.transform.TransformerException;
 public class test
 {
 
-    public static void main(String[] args) throws
-            TransformerConfigurationException, TransformerException
+    public static void main(String[] args)
     {
-        System.out.println("");
+        try
+        {
+            BufferedImage inputImage = ImageIO.read(new File("skeleton-sample2.bmp"));
+            ByteProcessor byteProc = new ByteProcessor(inputImage);
+            double neighbour[][] = new double[3][3];
+            byteProc.getNeighborhood(712, 107, neighbour);
+            System.out.println("Hello");
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

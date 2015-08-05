@@ -10,15 +10,21 @@ package com.emad;
  *
  * @author tnp
  */
-public class Point {
-		double x, y;
-		
-		public Point(double x, double y){
-			this.x = x;
-			this.y = y;
-		}
-		
-		public double getX(){ return this.x; }
-		
-		public double getY(){ return this.y; }
+public class GeneralTypes
+{
+
+    public enum ClassifierType
+    {
+
+        KNN,
+        SVM
+    }
+
+    public enum SimplifyAlgorithm
+    {
+
+        Douglas_Peucker,
+        Radial_Distance
+    }
+
 }

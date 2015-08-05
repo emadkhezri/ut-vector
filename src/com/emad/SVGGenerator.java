@@ -61,7 +61,30 @@ public class SVGGenerator
         polyLineElement.setAttributeNS(null, "style", "fill:none;stroke:black;stroke-width:1");
         polyLineElement.setAttributeNS(null, "points", pointsBuilder.toString());
         polyLineElement.setAttributeNS(null, "id", label);
-        
+
+        Element rootElement = svgDocument.getDocumentElement();
+        rootElement.appendChild(polyLineElement);
+    }
+
+    public void addPath(String label, Point[] knots, Point[] firstControlPoints,
+            Point[] secondControlPoints)
+    {
+        StringBuilder pathBuilder = new StringBuilder("");
+        pathBuilder.append("M" + knots[0].getX() + "," + knots[0].getY() + " ");
+        for (int i = 0; i < firstControlPoints.length; i++)
+        {
+            pathBuilder.append("C" + firstControlPoints[i].getX() + "," + firstControlPoints[i].
+                    getY() + " ");
+            pathBuilder.append(secondControlPoints[i].getX() + "," + secondControlPoints[i].getY()
+                    + " ");
+            pathBuilder.append(knots[i + 1].getX() + "," + knots[i + 1].getY() + " ");
+        }
+
+        Element polyLineElement = svgDocument.createElementNS(svgNS, "path");
+        polyLineElement.setAttributeNS(null, "style", "fill:none;stroke:black;stroke-width:1");
+        polyLineElement.setAttributeNS(null, "d", pathBuilder.toString());
+        polyLineElement.setAttributeNS(null, "class", label);
+
         Element rootElement = svgDocument.getDocumentElement();
         rootElement.appendChild(polyLineElement);
     }

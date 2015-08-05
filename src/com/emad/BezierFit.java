@@ -678,6 +678,7 @@ Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
 */
 
+import java.awt.Point;
 import java.util.ArrayList;
 import org.ujmp.core.Matrix;
 import org.ujmp.core.MatrixFactory;
@@ -766,7 +767,8 @@ public class BezierFit {
 			double x = E.getAsDouble(i, 0);
 			double y = F.getAsDouble(i, 0);
 			
-			Point p = new Point(x, y);
+			Point p = new Point();
+                        p.setLocation(x, y);
 			P[i] = p;
 		}
 		
@@ -860,7 +862,8 @@ public class BezierFit {
 				+ 3 * y3 * Math.pow(t,2) * (1-t)
 				+ y4 * Math.pow(t,3);
 
-		p = new Point(xt, yt);
+		p = new Point();
+                p.setLocation(xt, yt);
 
 		return p;
 	}

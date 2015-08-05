@@ -107,11 +107,11 @@ public class MedianFilter
         return n;
     }
 
-    public void filter(BufferedImage srcImage, BufferedImage dstImage)
+    public BufferedImage filter(BufferedImage srcImage)
     {
         int height = srcImage.getHeight();
         int width = srcImage.getWidth();
-
+        BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
         int[] a; //the array that gets the pixel value at (x, y) and its neightbors
 
         for (int k = 0; k < height; k++)
@@ -122,9 +122,10 @@ public class MedianFilter
                 //find the median for each color
                 int grayScale = median(a);
                 //set the new pixel value using the median just found
-                dstImage.setRGB(j, k, grayScale);
+                outputImage.setRGB(j, k, grayScale);
             }
         }
+        return outputImage;
     }
 
 }

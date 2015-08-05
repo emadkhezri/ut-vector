@@ -28,8 +28,10 @@ public class PixelUtility
     {
         this.image = inputImage;
         isAmbiguity = new boolean[inputImage.getWidth()][inputImage.getHeight()];
-        for(boolean[] row:isAmbiguity)
-        Arrays.fill(row, false);
+        for (boolean[] row : isAmbiguity)
+        {
+            Arrays.fill(row, false);
+        }
     }
 
     public void processAmbiguityPoints()
@@ -105,33 +107,77 @@ public class PixelUtility
             }
         }
         //check first and last element of array
-        if(neighbourArray[0]==neighbourArray[7]&&neighbourArray[7]==0)
+        if (neighbourArray[0] == neighbourArray[7] && neighbourArray[7] == 0)
+        {
             dense++;
+        }
         return dense;
     }
 
     public ArrayList<Point> getBlackNeigboursPosition(Point point)
     {
-        ArrayList<Point> neighbourList= new ArrayList<>();
+        ArrayList<Point> neighbourList = new ArrayList<>();
         double neighbours[][] = new double[3][3];
         new ByteProcessor(image).getNeighborhood(point.x, point.y, neighbours);
-        for(int i=0;i<neighbours.length;i++)
-            for(int j=0;j<neighbours.length;j++)
-            {
-                if (i == j && i == neighbours.length / 2)
-                {
-                    continue;
-                }
-                if(neighbours[i][j]==0)
-                {
-                    int x= point.x;
-                    int y=point.y;
-                    neighbourList.add(new Point(x+i-1, y+j-1));
-                }
-            }
+        if (neighbours[0][0] == 0)
+        {
+            neighbourList.add(new Point(point.x - 1, point.y - 1));
+        }
+        if (neighbours[1][0] == 0)
+        {
+            neighbourList.add(new Point(point.x, point.y-1));
+        }
+        if (neighbours[2][0] == 0)
+        {
+            neighbourList.add(new Point(point.x+1, point.y - 1));
+        }
+        if (neighbours[2][1] == 0)
+        {
+            neighbourList.add(new Point(point.x+1, point.y));
+        }
+        if (neighbours[2][2] == 0)
+        {
+            neighbourList.add(new Point(point.x + 1, point.y + 1));
+        }
+        if (neighbours[1][2] == 0)
+        {
+            neighbourList.add(new Point(point.x, point.y+1));
+        }
+        if (neighbours[0][2] == 0)
+        {
+            neighbourList.add(new Point(point.x - 1, point.y +1));
+        }
+        if (neighbours[0][1] == 0)
+        {
+            neighbourList.add(new Point(point.x-1, point.y));
+        }
         return neighbourList;
     }
-
+    
+    public int getNeighbourhoodNumber(Point center,Point p)
+    {
+        int x = p.x - center.x;
+        int y = p.y - center.y;
+        if(x==-1&&y==-1)
+            return 1;
+        if(x==0&&y==-1)
+            return 2;
+        if(x==1&&y==-1)
+            return 3;
+        if(x==1&&y==0)
+            return 4;
+        if(x==1&&y==1)
+            return 5;
+        if(x==0&&y==1)
+            return 6;
+        if(x==-1&&y==1)
+            return 7;
+        if(x==-1&&y==0)
+            return 8;
+        else 
+            return -1;
+    }
+    
     public boolean isAmbiguity(Point p)
     {
         return isAmbiguity[p.x][p.y];

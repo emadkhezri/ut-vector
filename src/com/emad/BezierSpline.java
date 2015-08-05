@@ -6,6 +6,8 @@
 
 package com.emad;
 
+import java.awt.Point;
+
 /**
  *
  * @author tnp
@@ -25,8 +27,8 @@ public class BezierSpline
     /// <exception cref="ArgumentException"><paramref name="knots"/>
     /// array must contain at least two points.</exception>
 
-    public void GetCurveControlPoints(Point[] knots,
-            Point[] firstControlPoints, Point[] secondControlPoints) throws
+    public void GetCurveControlPoints(Point[] knots, Point[] firstControlPoints,
+            Point[] secondControlPoints) throws
             Exception
     {
         if (knots == null)
@@ -36,19 +38,21 @@ public class BezierSpline
         int n = knots.length - 1;
         if (n < 1)
         {
-            throw new Exception("At least two knot points required knots");
+            return;
         }
         if (n == 1)
         { // Special case: Bezier curve should be a straight line.
-            firstControlPoints = new Point[1];
             // 3P1 = 2P0 + P3
-            firstControlPoints[0].x = (2 * knots[0].x + knots[1].x) / 3;
-            firstControlPoints[0].y = (2 * knots[0].y + knots[1].y) / 3;
-
-            secondControlPoints = new Point[1];
+            firstControlPoints[0] = new Point();
+            double x = (2 * knots[0].getX() + knots[1].getX()) / 3;
+            double y = (2 * knots[0].getY() + knots[1].getY()) / 3;
+            firstControlPoints[0].setLocation(x, y);
+            
+            secondControlPoints[0] = new Point();
             // P2 = 2P1 – P0
-            secondControlPoints[0].x = 2 * firstControlPoints[0].x - knots[0].x;
-            secondControlPoints[0].y = 2 * firstControlPoints[0].y - knots[0].y;
+            x = 2 * firstControlPoints[0].getX() - knots[0].getX();
+            y = 2 * firstControlPoints[0].getY() - knots[0].getY();
+            secondControlPoints[0].setLocation(x, y);
             return;
         }
 
@@ -59,40 +63,42 @@ public class BezierSpline
         // Set right hand side X values
         for (int i = 1; i < n - 1; ++i)
         {
-            rhs[i] = 4 * knots[i].x + 2 * knots[i + 1].x;
+            rhs[i] = 4 * knots[i].getX() + 2 * knots[i + 1].getX();
         }
-        rhs[0] = knots[0].x + 2 * knots[1].x;
-        rhs[n - 1] = (8 * knots[n - 1].x + knots[n].x) / 2.0;
+        rhs[0] = knots[0].getX() + 2 * knots[1].getX();
+        rhs[n - 1] = (8 * knots[n - 1].getX() + knots[n].getX()) / 2.0;
         // Get first control points X-values
         double[] x = GetFirstControlPoints(rhs);
 
         // Set right hand side Y values
         for (int i = 1; i < n - 1; ++i)
         {
-            rhs[i] = 4 * knots[i].y + 2 * knots[i + 1].y;
+            rhs[i] = 4 * knots[i].getY() + 2 * knots[i + 1].getY();
         }
-        rhs[0] = knots[0].y + 2 * knots[1].y;
-        rhs[n - 1] = (8 * knots[n - 1].y + knots[n].y) / 2.0;
+        rhs[0] = knots[0].getY() + 2 * knots[1].getY();
+        rhs[n - 1] = (8 * knots[n - 1].getY() + knots[n].getY()) / 2.0;
         // Get first control points Y-values
         double[] y = GetFirstControlPoints(rhs);
 
         // Fill output arrays.
-        firstControlPoints = new Point[n];
-        secondControlPoints = new Point[n];
+        //firstControlPoints = new Point[n];
+        //secondControlPoints = new Point[n];
         for (int i = 0; i < n; ++i)
         {
             // First control point
-            firstControlPoints[i] = new Point(x[i], y[i]);
+            firstControlPoints[i] = new Point();
+            firstControlPoints[i].setLocation(x[i], y[i]);
             // Second control point
             if (i < n - 1)
             {
-                secondControlPoints[i]
-                        = new Point(2 * knots[i + 1].x - x[i + 1], 2 * knots[i
-                                + 1].y - y[i + 1]);
+                secondControlPoints[i] = new Point();
+                secondControlPoints[i].setLocation(2 * knots[i + 1].x - x[i + 1], 2 * knots[i
+                        + 1].y - y[i + 1]);
             }
             else
             {
-                secondControlPoints[i] = new Point((knots[n].x + x[n - 1]) / 2,
+                secondControlPoints[i] = new Point();
+                secondControlPoints[i].setLocation((knots[n].x + x[n - 1]) / 2,
                         (knots[n].y + y[n - 1]) / 2);
             }
         }
