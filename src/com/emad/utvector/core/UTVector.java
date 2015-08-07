@@ -73,7 +73,7 @@ public class UTVector
         PixelUtility pixelUtil = new PixelUtility(image);
         pixelUtil.processAmbiguityPoints();
 
-        SmartJunctionRecover smartJunc = new SmartJunctionRecover(SVM);
+        SmartJunctionRecover smartJunc;
         smartJunc = new SmartJunctionRecover(SVM, DATASET_FILE_NAME);
         PathSegmentation pathSegmentation = new PathSegmentation(image, pixelUtil, smartJunc);
         int segmentNo = 0;
@@ -129,6 +129,7 @@ public class UTVector
         }
 
         svg.saveToFile(OUTPUT_FILE_NAME);
+        //svg.showSVG();
     }
 
 }

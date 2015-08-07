@@ -10,7 +10,9 @@ import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -22,6 +24,7 @@ import org.apache.batik.dom.svg.SVGDOMImplementation;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.svg.SVGDocument;
 
 /**
  *
@@ -90,7 +93,8 @@ public class SVGGenerator
     }
 
     public void saveToFile(String fileName) throws
-            TransformerConfigurationException, FileNotFoundException, TransformerException
+            TransformerConfigurationException, FileNotFoundException, TransformerException,
+            IOException
     {
         Transformer transformer = TransformerFactory.newInstance().
                 newTransformer();
@@ -100,6 +104,18 @@ public class SVGGenerator
         fileOutputStream = new FileOutputStream(new File(fileName));
         StreamResult result = new StreamResult(fileOutputStream);
         transformer.transform(source, result);
+        fileOutputStream.close();
+    }
+
+    public void showSVG()
+    {
+        // Display the document.
+//        JSVGCanvas canvas = new JSVGCanvas();
+//        JFrame f = new JFrame();
+//        f.getContentPane().add(canvas);
+//        canvas.setSVGDocument((SVGDocument)svgDocument);
+//        f.pack();
+//        f.setVisible(true);
     }
 
 }
