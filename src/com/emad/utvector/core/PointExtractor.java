@@ -1,4 +1,4 @@
-package com.goebl.simplify;
+package com.emad.utvector.core;
 
 /**
  * Helper to get X and Y coordinates from a foreign class T.

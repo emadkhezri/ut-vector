@@ -13,7 +13,6 @@ import static com.emad.utvector.core.Constants.SEGMENT_PATH_CLASS;
 import static com.emad.utvector.core.Constants.SIMPLIFY_TOLERANCE;
 import static com.emad.utvector.core.GeneralTypes.ClassifierType.SVM;
 import static com.emad.utvector.core.GeneralTypes.SimplifyAlgorithm.Douglas_Peucker;
-import com.goebl.simplify.Simplify;
 import ij.process.ByteProcessor;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -63,7 +62,7 @@ public class UTVector
         }
         catch (Exception ex)
         {
-            System.out.println("Vectorization failed.\n"+ex.toString());
+            System.out.println("Vectorization failed.\n" + ex.toString());
             Logger.getLogger(UTVector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -97,11 +96,17 @@ public class UTVector
 
     public BufferedImage preProcess(BufferedImage inputImage) throws IOException
     {
-        BufferedImage outputImage;
+        BufferedImage outputImage = inputImage;
         Thresholding thresholding = new Thresholding(Constants.GRAY_SCALE_THRESHOLD);
-        outputImage = thresholding.threshold(inputImage);
+        if (Constants.NEED_GRAY_SCALE_THRESHOLD)
+        {
+            outputImage = thresholding.threshold(inputImage);
+        }
         MedianFilter medianFilter = new MedianFilter(Constants.MEDIAN_FILTER_FRAME_SIZE);
-        outputImage = medianFilter.filter(outputImage);
+        if (Constants.NEED_MEDIAN_FILTER)
+        {
+            outputImage = medianFilter.filter(outputImage);
+        }
         outputImage = thresholding.binarize(outputImage);
         new ByteProcessor(outputImage).skeletonize();
         return outputImage;

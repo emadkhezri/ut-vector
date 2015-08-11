@@ -1,4 +1,4 @@
-package com.goebl.simplify;
+package com.emad.utvector.core;
 
 import com.emad.utvector.core.GeneralTypes.SimplifyAlgorithm;
 import java.util.ArrayList;

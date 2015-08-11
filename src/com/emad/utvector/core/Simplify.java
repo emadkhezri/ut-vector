@@ -1,4 +1,4 @@
-package com.goebl.simplify;
+package com.emad.utvector.core;
 
 import java.awt.Point;
 
