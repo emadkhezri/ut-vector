@@ -35,7 +35,7 @@ public class Constants
 
     public static boolean initializeConstant(String key, String value)
     {
-        switch (key)
+        switch (key.toUpperCase())
         {
         case "INPUT_FILE_NAME":
             INPUT_FILE_NAME = value;

@@ -9,6 +9,11 @@ package com.emad.utvector.core;
 import static com.emad.utvector.core.Constants.GRAY_SCALE_THRESHOLD;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -66,6 +71,14 @@ public class Thresholding
             }
 
         }
+        try
+        {
+            ImageIO.write(outputImage, "bmp", new File("threshold-filter-father.bmp"));
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MedianFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return outputImage;
     }
 
@@ -74,6 +87,7 @@ public class Thresholding
         int height = inputImage.getHeight();
         int width = inputImage.getWidth();
         BufferedImage outputImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
+        int count=0;
         for (int k = 0; k < height; k++)
         {
             for (int j = 0; j < width; j++)
@@ -87,10 +101,12 @@ public class Thresholding
                 else
                 {
                     outputImage.setRGB(j, k, 0);
+                    count++;
                 }
             }
 
         }
+        System.out.println("Count="+count);
         return outputImage;
     }
 

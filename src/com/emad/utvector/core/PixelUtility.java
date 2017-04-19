@@ -37,6 +37,9 @@ public class PixelUtility
     public void processAmbiguityPoints()
     {
         int degree;
+        int degree3ambig=0;
+        int degree4ambig=0;
+        int totalAmbig=0;
         for (int j = 0; j < image.getHeight(); j++)
         {
             for (int i = 0; i < image.getWidth(); i++)
@@ -55,11 +58,19 @@ public class PixelUtility
                     {
                         Point p = new Point(i, j);
                         ambiguityRegionMap.put(p, degree);
+                        totalAmbig++;
+                        if(degree==3)
+                            degree3ambig++;
+                        if(degree==4)
+                            degree4ambig++;
                         isAmbiguity[i][j] = true;
                     }
                 }
             }
         }
+        System.out.println("Total ambig="+totalAmbig);
+        System.out.println("degree 3 ambig="+degree3ambig);
+        System.out.println("degree 4 ambig="+degree4ambig);
     }
 
     public LinkedHashMap getAmbiguityMap()

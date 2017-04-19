@@ -8,6 +8,11 @@ package com.emad.utvector.core;
 
 import static com.emad.utvector.core.Constants.MEDIAN_FILTER_FRAME_SIZE;
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class MedianFilter
 {
@@ -124,6 +129,14 @@ public class MedianFilter
                 //set the new pixel value using the median just found
                 outputImage.setRGB(j, k, grayScale);
             }
+        }
+        try
+        {
+            ImageIO.write(outputImage, "bmp", new File("median-filter-father.bmp"));
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MedianFilter.class.getName()).log(Level.SEVERE, null, ex);
         }
         return outputImage;
     }

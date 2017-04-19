@@ -49,7 +49,7 @@ public class SVGGenerator
         svgRoot.setAttributeNS(null, "height", height.toString());
     }
 
-    public void addPolyLine(String label, ArrayList<Point> points)
+    public void addPolyLine(String label, Point... points)
     {
         StringBuilder pointsBuilder = new StringBuilder();
         for (Point point : points)
@@ -67,6 +67,22 @@ public class SVGGenerator
 
         Element rootElement = svgDocument.getDocumentElement();
         rootElement.appendChild(polyLineElement);
+    }
+
+    public void addCircle(String label, Point... points)
+    {
+        for (Point point : points)
+        {
+
+            Element circleElement = svgDocument.createElementNS(svgNS, "circle");
+            circleElement.setAttributeNS(null, "cx", String.valueOf(point.x));
+            circleElement.setAttributeNS(null, "cy", String.valueOf(point.y));
+            circleElement.setAttributeNS(null, "r", "2");
+            circleElement.setAttributeNS(null, "style", "fill:blue;stroke:black;");
+            circleElement.setAttributeNS(null, "id", label);
+            Element rootElement = svgDocument.getDocumentElement();
+            rootElement.appendChild(circleElement);
+        }
     }
 
     public void addPath(String label, Point[] knots, Point[] firstControlPoints,

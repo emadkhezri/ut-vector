@@ -653,14 +653,14 @@ public class UTVectorGUI extends javax.swing.JFrame
                     Logger.getLogger(UTVectorGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 UTVectorGUI utVectorGUI = new UTVectorGUI();
-                try
-                {
-                    utVectorGUI.setIconImage(ImageIO.read(new File("icon/utLogo.png")));
-                }
-                catch (IOException ex)
-                {
-                    Logger.getLogger(UTVectorGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                try
+//                {
+//                    utVectorGUI.setIconImage(ImageIO.read(new File("icon/utLogo.png")));
+//                }
+//                catch (IOException ex)
+//                {
+//                    Logger.getLogger(UTVectorGUI.class.getName()).log(Level.SEVERE, null, ex);
+//                }
                 utVectorGUI.setVisible(true);
             }
 

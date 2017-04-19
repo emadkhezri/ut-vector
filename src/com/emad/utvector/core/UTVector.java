@@ -97,18 +97,26 @@ public class UTVector
     public BufferedImage preProcess(BufferedImage inputImage) throws IOException
     {
         BufferedImage outputImage = inputImage;
-        Thresholding thresholding = new Thresholding(Constants.GRAY_SCALE_THRESHOLD);
-        if (Constants.NEED_GRAY_SCALE_THRESHOLD)
-        {
-            outputImage = thresholding.threshold(inputImage);
-        }
         MedianFilter medianFilter = new MedianFilter(Constants.MEDIAN_FILTER_FRAME_SIZE);
         if (Constants.NEED_MEDIAN_FILTER)
         {
             outputImage = medianFilter.filter(outputImage);
         }
-        outputImage = thresholding.binarize(outputImage);
+        Thresholding thresholding = new Thresholding(Constants.GRAY_SCALE_THRESHOLD);
+        if (Constants.NEED_GRAY_SCALE_THRESHOLD)
+        {
+            outputImage = thresholding.threshold(outputImage);
+            outputImage = thresholding.binarize(outputImage);
+        }
         new ByteProcessor(outputImage).skeletonize();
+        try
+        {
+            ImageIO.write(outputImage, "bmp", new File("skeleton-father.bmp"));
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MedianFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return outputImage;
     }
 
@@ -126,11 +134,13 @@ public class UTVector
             Point[] allPoints = new Point[pointsList.size()];
             allPoints = ((ArrayList<Point>)pathSegment.get(label)).toArray(allPoints);
             Point[] lessPoints = simplify.simplify(allPoints, SIMPLIFY_TOLERANCE,
-                    Douglas_Peucker);
+                    Constants.SIMPLIFY_ALGORITHM);
             Point firstControlPoints[] = new Point[lessPoints.length - 1];
             Point secondControlPoints[] = new Point[lessPoints.length - 1];
             bezierSpline.GetCurveControlPoints(lessPoints, firstControlPoints, secondControlPoints);
             svg.addPath(label, lessPoints, firstControlPoints, secondControlPoints);
+            //svg.addPolyLine(label, pointsList);
+            //svg.addCircle(label, lessPoints);
         }
 
         svg.saveToFile(OUTPUT_FILE_NAME);

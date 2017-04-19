@@ -4,6 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/gui/UTVectorGUI.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/BezierFit.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/MedianFilter.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/BezierSpline.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/GeneralTypes.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/PixelUtility.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/PointExtractor.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/SVGGenerator.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/Thresholding.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/Constants.java</file>
+            <file>file:/C:/Users/tnp/Documents/NetBeansProjects/vectorization/src/com/emad/utvector/core/UTVector.java</file>
         </group>
     </open-files>
 </project-private>
