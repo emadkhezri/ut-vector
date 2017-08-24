@@ -31,9 +31,14 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jSeparator1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="utVectorLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="aboutUsButton" min="-2" pref="97" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
@@ -43,91 +48,95 @@
                                   </Group>
                                   <Component id="imageViewPanel" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                                      <Component id="vectorizationProgressBar" min="-2" pref="411" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="inputImageButton" min="-2" pref="40" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="inputImageTextField" min="-2" pref="278" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="outputImageButton" min="-2" pref="40" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="outputImageTextField" min="-2" pref="278" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="outputImageLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="inputImageLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="trainedDataSetButton" min="-2" pref="42" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="trainedDataSetTextField" min="-2" pref="277" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="trainedDataSetLabel" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="medianFrameSizeSlider" min="-2" pref="137" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="medianFrameSizeLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="medianFilterCheckBox" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="thresholdValueTextField" pref="99" max="32767" attributes="0"/>
-                                                  <Component id="knnNumberTextField" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="simplifyToleranceTextField" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="knnNumberLabel" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="simplifyToleranceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="classifierTypeComboBox" min="-2" pref="107" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="classifierTypeLabel" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="trainedDataSetButton" min="-2" pref="42" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="trainedDataSetTextField" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="outputImageButton" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                                                          <Component id="inputImageButton" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <Component id="thresholdingCheckBox" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="outputImageTextField" max="32767" attributes="0"/>
+                                                          <Component id="inputImageTextField" max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="outputImageLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="inputImageLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="trainedDataSetLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="medianFrameSizeSlider" min="-2" pref="91" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="knnNumberTextField" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="thresholdValueTextField" alignment="0" pref="91" max="32767" attributes="0"/>
+                                                      <Component id="simplifyToleranceTextField" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="medianFrameSizeLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="thresholdingCheckBox" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="medianFilterCheckBox" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="SimplifyTypeComboBox" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="simplifyTypeLabel" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="1" attributes="0">
+                                                          <Component id="knnNumberLabel" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="simplifyToleranceLabel" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="classifierTypeComboBox" max="32767" attributes="0"/>
+                                                          <Component id="SimplifyTypeComboBox" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                              <Component id="simplifyTypeLabel" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                                              <Component id="classifierTypeLabel" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="vectorizationProgressBar" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="aboutUsButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="utVectorLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -138,9 +147,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="utVectorLabel" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="aboutUsButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="aboutUsButton" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="utVectorLabel" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -174,23 +183,23 @@
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="thresholdValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="thresholdingCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="classifierTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="classifierTypeComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="knnNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="knnNumberTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="knnNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="simplifyToleranceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="SimplifyTypeComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="simplifyTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="simplifyToleranceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="simplifyToleranceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
@@ -216,7 +225,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="vectorizationButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x628;&#x631;&#x62f;&#x627;&#x631;&#x6cc;&#x200c;&#x633;&#x627;&#x632;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Vectorize"/>
         <Property name="actionCommand" type="java.lang.String" value="vectorizeButton"/>
       </Properties>
       <Events>
@@ -231,7 +240,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="99" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x646;&#x631;&#x645;&#x200c;&#x627;&#x641;&#x632;&#x627;&#x631; &#x628;&#x631;&#x62f;&#x627;&#x631;&#x6cc;&#x200c;&#x633;&#x627;&#x632;&#x6cc; &#x62f;&#x627;&#x646;&#x634;&#x6af;&#x627;&#x647; &#x62a;&#x647;&#x631;&#x627;&#x646;"/>
+        <Property name="text" type="java.lang.String" value="UT Vector"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
@@ -239,15 +248,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="aboutUsButton">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\tnp\Documents\NetBeansProjects\vectorization\resources\utLogo.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="About"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="medianFilterCheckBox">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="&#x641;&#x6cc;&#x640;&#x640;&#x644;&#x62a;&#x631; &#x645;&#x6cc;&#x627;&#x646;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Median Filter"/>
         <Property name="actionCommand" type="java.lang.String" value="medianFilterCheckBox"/>
       </Properties>
       <Events>
@@ -256,7 +263,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="inputImageLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x62a;&#x635;&#x648;&#x6cc;&#x631; &#x648;&#x631;&#x648;&#x62f;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Input Image"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="inputImageTextField">
@@ -274,7 +281,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="outputImageLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x62a;&#x635;&#x648;&#x6cc;&#x631; &#x62e;&#x631;&#x648;&#x62c;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Output SVG"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="outputImageTextField">
@@ -292,7 +299,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="medianFrameSizeLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x627;&#x646;&#x62f;&#x627;&#x632;&#x647; &#x642;&#x627;&#x628; &#x641;&#x6cc;&#x644;&#x62a;&#x631; &#x645;&#x6cc;&#x627;&#x646;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Frame Size"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="medianFrameSizeSlider">
@@ -309,7 +316,7 @@
     <Component class="javax.swing.JCheckBox" name="thresholdingCheckBox">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="&#x622;&#x633;&#x62a;&#x627;&#x646;&#x647; &#x6af;&#x6cc;&#x631;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Thresholding"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="thresholdingCheckBoxStateChanged"/>
@@ -317,7 +324,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x645;&#x642;&#x62f;&#x627;&#x631;&#x622;&#x633;&#x640;&#x640;&#x62a;&#x627;&#x646;&#x640;&#x640;&#x647;"/>
+        <Property name="text" type="java.lang.String" value="Threshold Value"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="thresholdValueTextField">
@@ -327,7 +334,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="trainedDataSetLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x62f;&#x6cc;&#x62a;&#x627;&#x633;&#x62a; &#x6cc;&#x627;&#x62f;&#x6af;&#x6cc;&#x631;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Dataset"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="trainedDataSetTextField">
@@ -345,7 +352,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="classifierTypeLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x631;&#x648;&#x634; &#x6cc;&#x627;&#x62f;&#x6af;&#x6cc;&#x631;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Classifier"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="classifierTypeComboBox">
@@ -363,7 +370,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="knnNumberLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x62a;&#x639;&#x62f;&#x627;&#x62f; &#x647;&#x645;&#x633;&#x627;&#x6cc;&#x6af;&#x6cc;"/>
+        <Property name="text" type="java.lang.String" value="Neighbours Num"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="knnNumberTextField">
@@ -374,7 +381,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="simplifyTypeLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x631;&#x648;&#x634; &#x62a;&#x640;&#x62e;&#x640;&#x645;&#x6cc;&#x646;"/>
+        <Property name="text" type="java.lang.String" value="Approx Approach"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="SimplifyTypeComboBox">
@@ -392,7 +399,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="simplifyToleranceLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x62a;&#x62d;&#x645;&#x644; &#x62a;&#x62e;&#x640;&#x640;&#x645;&#x640;&#x6cc;&#x640;&#x646;"/>
+        <Property name="text" type="java.lang.String" value="Approx Value"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="simplifyToleranceTextField">
@@ -404,7 +411,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x62e;&#x631;&#x648;&#x62c;"/>
+        <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -430,7 +437,10 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="picLabel" alignment="0" pref="292" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="picLabel" min="-2" pref="321" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
